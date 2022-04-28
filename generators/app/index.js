@@ -80,7 +80,6 @@ module.exports = class extends Generator {
             '**/package-lock.json',
             '**/yarn.lock',
             '**/index.html',
-            '**/README.md',
             '**/.gitignore.sample',
             '**/.npmignore',
             '**/.env.sample'
@@ -102,12 +101,6 @@ module.exports = class extends Generator {
     this._writeFile(
       this.templatePath('common/package.json.template'),
       this.destinationPath(applicationName, 'package.json'),
-      variables
-    );
-
-    this._writeFile(
-      this.templatePath('common/README.md.template'),
-      this.destinationPath(applicationName, 'README.md'),
       variables
     );
 

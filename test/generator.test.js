@@ -15,7 +15,6 @@ describe('react scaffolder', () => {
     `${applicationName}/.prettierrc`,
     `${applicationName}/.stylelintrc.json`,
     `${applicationName}/package.json`,
-    `${applicationName}/README.md`,
     `${applicationName}/.env`,
     `${applicationName}/tsconfig.json`
   ];
@@ -37,7 +36,6 @@ describe('react scaffolder', () => {
       .then(() => {
         assert.file(commonOutput.concat(tsOutput));
         assert.noFile(`${applicationName}/.gitignore.sample`);
-        assert.fileContent(path.join(`${applicationName}/README.md`), 'my-app');
       });
   });
 
@@ -54,7 +52,6 @@ describe('react scaffolder', () => {
       .then(() => {
         assert.file(commonOutput.concat(tsOutput));
         assert.noFile(`${applicationName}/.gitignore.sample`);
-        assert.fileContent(path.join(`${applicationName}/README.md`), 'my-app');
       });
   });
 
@@ -69,8 +66,6 @@ describe('react scaffolder', () => {
           engines: { node, npm }
         });
         assert.fileContent(`${applicationName}/public/index.html`, applicationName);
-        assert.fileContent(`${applicationName}/README.md`, 'npm');
-        assert.noFileContent(`${applicationName}/README.md`, 'yarn');
       });
   });
 
@@ -85,8 +80,6 @@ describe('react scaffolder', () => {
           engines: { node, yarn }
         });
         assert.fileContent(`${applicationName}/public/index.html`, applicationName);
-        assert.fileContent(`${applicationName}/README.md`, 'yarn');
-        assert.noFileContent(`${applicationName}/README.md`, 'npm');
       });
   });
 });
