@@ -11,8 +11,7 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.option('react');
-    this.option('reactAntd');
-    this.option('ts');
+    this.option('react-antd');
     this.option('skip-install');
   }
 
@@ -43,16 +42,12 @@ module.exports = class extends Generator {
 
   writing() {
     const { applicationName, yarn } = this.data;
-    const { react, reactAntd } = this.options;
 
     const isYarn = yarn.toLowerCase() === 'y';
 
     let templateName = 'react';
     let pkg = reactPkg;
-    if (react) {
-      pkg = reactPkg;
-      templateName = 'react';
-    } else if (reactAntd) {
+    if (this.options['react-antd']) {
       templateName = 'reactAntd';
       pkg = reactAntdPkg;
     }
@@ -64,6 +59,9 @@ module.exports = class extends Generator {
       cmd: isYarn ? 'yarn' : 'npm run',
       dependencies: pkg.dependencies,
       devDependencies: pkg.devDependencies,
+      scripts: pkg.scripts,
+      eslintConfig: pkg.eslintConfig,
+      browserslist: pkg.browserslist,
       nodeVersion: '16.13.1',
       packageManager: isYarn ? 'yarn' : 'npm',
       packageManagerVersion: isYarn ? '1.22.4' : '6.14.7',
@@ -84,7 +82,8 @@ module.exports = class extends Generator {
             '**/index.html',
             '**/README.md',
             '**/.gitignore.sample',
-            '**/.npmignore'
+            '**/.npmignore',
+            '**/.env.sample'
           ]
         }
       }
@@ -93,6 +92,11 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath(`${path}/.gitignore.sample`),
       this.destinationPath(applicationName, '.gitignore')
+    );
+
+    this.fs.copy(
+      this.templatePath(`${path}/.env.sample`),
+      this.destinationPath(applicationName, '.env')
     );
 
     this._writeFile(
@@ -119,7 +123,7 @@ module.exports = class extends Generator {
     if (!this.options['skip-install']) {
       const { applicationName, yarn } = this.data;
 
-      const isYarn = yarn.toLowerCase() === 'y';
+      const isYarn = yarn.toLowerCase() !== 'n';
       const method = isYarn ? 'yarnInstall' : 'npmInstall';
 
       this.log(

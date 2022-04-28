@@ -9,45 +9,20 @@ describe('react scaffolder', () => {
   const commonOutput = [
     `${applicationName}/build`,
     `${applicationName}/public`,
-    `${applicationName}/scripts`,
     `${applicationName}/src`,
-    `${applicationName}/.editorconfig`,
-    `${applicationName}/.eslintignore`,
-    `${applicationName}/.eslintrc.js`,
+    `${applicationName}/.eslintrc.json`,
     `${applicationName}/.gitignore`,
-    `${applicationName}/.lintstagedrc.js`,
-    `${applicationName}/.npmrc`,
-    `${applicationName}/.postcssrc.js`,
-    `${applicationName}/.prettierrc.js`,
-    `${applicationName}/.stylelintignore`,
-    `${applicationName}/.stylelintrc.js`,
-    `${applicationName}/jest.config.js`,
+    `${applicationName}/.prettierrc`,
+    `${applicationName}/.stylelintrc.json`,
     `${applicationName}/package.json`,
     `${applicationName}/README.md`,
-    `${applicationName}/webpack.config.js`
+    `${applicationName}/.env`,
+    `${applicationName}/tsconfig.json`
   ];
 
   const node = '>= 16.13.1';
   const npm = '>= 6.14.7';
   const yarn = '>= 1.22.4';
-
-  it('generates a javascript template', () => {
-    const esOutput = [
-      `${applicationName}/.babelrc`,
-      `${applicationName}/src/polyfills.js`,
-      `${applicationName}/src/index.jsx`
-    ];
-
-    return helpers
-      .run(generator)
-      .withOptions({ 'skip-install': true })
-      .withPrompts({ applicationName, yarn: 'n' })
-      .then(() => {
-        assert.file(commonOutput.concat(esOutput));
-        assert.noFile(`${applicationName}/.gitignore.sample`);
-        assert.fileContent(path.join(`${applicationName}/README.md`), 'my-app');
-      });
-  });
 
   it('generates a react template', () => {
     const tsOutput = [

@@ -1,6 +1,6 @@
 {
   "name": "generator-create-react-template",
-  "version": "2.3.3",
+  "version": "0.0.4",
   "description": "Scaffolding for new enterprise scale React applications on the fly.",
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
     "prepublishOnly": "./scripts/prepublish.sh",
     "test": "node scripts/test",
     "test:coverage": "npm test -- --coverage",
-    "test:javascript": "./scripts/testall.sh javascript",
-    "test:typescript": "./scripts/testall.sh typescript"
+    "test:reactAntd": "./scripts/testall.sh reactAntd",
+    "test:react": "./scripts/testall.sh react"
   },
   "dependencies": {
     "chalk": "4.1.2",
