@@ -1,0 +1,14 @@
+.vscode
+.github
+.husky
+.editorconfig
+.eslintignore
+.eslintrc.js
+.gitignore
+.lintstagedrc.js
+.prettierignore
+.prettierrc.js
+jest.config.js
+scripts
+test
+package-lock.json

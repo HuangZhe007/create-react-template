@@ -1,0 +1,60 @@
+name: Generator
+
+on:
+  push:
+    paths:
+      - generators/**
+      - test/**
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    name: Install Dependencies
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: react-scaffolder-dependency-cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+      run: npm install --ignore-scripts
+
+  eslint:
+    runs-on: ubuntu-latest
+    name: ESLint
+    needs: [dependencies]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore npm cache
+      uses: actions/cache@v2
+      env:
+        cache-name: react-scaffolder-dependency-cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: Lint all scripts
+      run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    needs: [dependencies]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore npm cache
+      uses: actions/cache@v2
+      env:
+        cache-name: react-scaffolder-dependency-cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: Run unit tests
+      run: npm run test:coverage
+    - name: Upload test coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage/lcov.info
