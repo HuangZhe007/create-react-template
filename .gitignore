@@ -6,3 +6,4 @@
 **/.DS_Store
 generators/**/.husky
 **/build
+**/*-error.log

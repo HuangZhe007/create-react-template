@@ -43,10 +43,22 @@ Generate with react:
 yo create-react-template --react
 ```
 
-with react antd:
+with react and antd:
 
 ```sh
 yo create-react-template --react-antd
+```
+
+with react-antd-web3 :
+
+```sh
+yo create-react-template --react-antd-web3
+```
+
+with react-antd-web3-aelf :
+
+```sh
+yo create-react-template --react-antd-web3-aelf
 ```
 
 The generator will attempt to install dependencies for you by default, though this operation can be disabled:

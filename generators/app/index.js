@@ -4,6 +4,8 @@ const Generator = require('yeoman-generator');
 
 const reactPkg = require('./templates/react/package.json');
 const reactAntdPkg = require('./templates/reactAntd/package.json');
+const reactAntdWeb3Pkg = require('./templates/reactAntdWeb3/package.json');
+const reactAntdWeb3AElfPkg = require('./templates/reactAntdWeb3AElf/package.json');
 // enable install tasks (yeoman v4 backwards compatibility)
 extend(Generator.prototype, require('yeoman-generator/lib/actions/install'));
 
@@ -12,6 +14,8 @@ module.exports = class extends Generator {
     super(args, opts);
     this.option('react');
     this.option('react-antd');
+    this.option('react-antd-web3');
+    this.option('react-antd-web3-aelf');
     this.option('skip-install');
   }
 
@@ -50,6 +54,12 @@ module.exports = class extends Generator {
     if (this.options['react-antd']) {
       templateName = 'reactAntd';
       pkg = reactAntdPkg;
+    } else if (this.options['react-antd-web3']) {
+      templateName = 'reactAntdWeb3';
+      pkg = reactAntdWeb3Pkg;
+    } else if (this.options['react-antd-web3-aelf']) {
+      templateName = 'reactAntdWeb3AElf';
+      pkg = reactAntdWeb3AElfPkg;
     }
 
     const path = templateName.toLowerCase();
