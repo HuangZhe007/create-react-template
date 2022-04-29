@@ -18,11 +18,12 @@
     "framework",
     "react",
     "scaffold",
-    "scaffolder",
     "template",
+    "react-template",
     "typescript",
     "frontend",
-    "webpack"
+    "webpack",
+    "create-react-template"
   ],
   "scripts": {
     "lint": "node scripts/eslint",
@@ -33,7 +34,7 @@
     "test:coverage": "npm test -- --coverage",
     "test:reactAntd": "./scripts/testall.sh reactAntd",
     "test:react": "./scripts/testall.sh react",
-    "release": "standard-version -a"
+    "release": "standard-version -a && npm publish"
   },
   "dependencies": {
     "chalk": "4.1.2",
