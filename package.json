@@ -1,6 +1,6 @@
 {
   "name": "generator-create-react-template",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Scaffolding for new enterprise scale React applications on the fly.",
   "repository": {
     "type": "git",
